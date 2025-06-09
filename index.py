@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
+from mangum import Mangum
 
 app = FastAPI(title="AIRISS v3.0 - OK금융그룹 AI 인재분석시스템")
 
@@ -268,4 +269,5 @@ async def get_info():
     }
 
 # Vercel serverless function handler
-handler = app
+# Mangum is an adapter for running ASGI applications on AWS Lambda/Vercel
+handler = Mangum(app)
